@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Conversion Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        p {
+            background-color: #e7f3fe;
+            border-left: 6px solid #2196F3;
+            padding: 10px;
+            max-width: 600px;
+            margin: 20px auto;
+            font-size: 18px;
+        }
+
+    </style>
+
+</head>
+<body>
+<h1>Data Conversion Tool</h1>
+<form th:action="@{/calculate}" th:object="${dataComForm}" method="post">
+    <label for="operation">Operation:</label>
+    <select id="operation" name="operation" th:field="*{operation}">
+        <option value="">Select an Option</option>
+        <option value="Hamming Distance">Hamming Distance</option>
+        <option value="Parity Check">Parity Check</option>
+        <option value="Bit Stuffing">Bit Stuffing</option>
+        <option value="Bit Destuffing">Bit Destuffing</option>
+    </select>
+    <br/><br/>
+    <label for="input1">Input 1:</label>
+    <input type="text" id="input1" name="input1" th:field="*{input1}" />
+    <br/><br/>
+    <label for="input2">Input 2:</label>
+    <input type="text" id="input2" name="input2" th:field="*{input2}" />
+    <br/><br/>
+    <button type="submit">Calculate</button>
+</form>
+
+<h2>Result:</h2>
+<div class="result-container">
+    <p th:text="${dataComForm.result}" class="result-message">Result will be shown here</p>
+</div>
+
+</body>
+</html>
